@@ -113,8 +113,30 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) transparent;
+    scroll-padding: 10;
   }
+  nav {
+    @apply rounded-t-lg;
+    -webkit-app-region: drag;
+  }
+
+  .nav-nodrag {
+    -webkit-app-region: no-drag;
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    overflow: hidden;
+    background-color: transparent;
+    user-select: none;
+  }
+
+  .main-app {
+    @apply max-w-screen max-h-screen min-w-screen min-h-screen bg-background text-foreground rounded-lg overflow-hidden;
   }
 }

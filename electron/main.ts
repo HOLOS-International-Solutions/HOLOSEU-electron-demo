@@ -23,15 +23,34 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
   : RENDERER_DIST;
 
 let win: BrowserWindow | null;
+let splash: BrowserWindow | null;
 let backendProcess: ChildProcessWithoutNullStreams | null = null;
 
 function createWindow() {
-  // Create browser window
-  win = new BrowserWindow({
-    width: 1000,
-    height: 700,
+  // Create the splash window first
+  splash = new BrowserWindow({
+    width: 500,
+    height: 500,
+    alwaysOnTop: true,
+    transparent: true,
     resizable: false,
-    icon: path.join(process.env.VITE_PUBLIC, "electron.svg"),
+    frame: false,
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+    },
+  });
+
+  splash.loadURL(path.join(process.env.VITE_PUBLIC, "splash.html")); // Or path to splash route
+
+  // Create browser window (initially hide it)
+  win = new BrowserWindow({
+    width: 1600,
+    height: 900,
+    resizable: true,
+    frame: false,
+    transparent: true,
+    icon: path.join(process.env.VITE_PUBLIC, "holos-eu-logo.png"),
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
       contextIsolation: true,
@@ -48,7 +67,12 @@ function createWindow() {
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
   }
 
+  // Initially hide the main window
+  win.hide();
+
   win.webContents.on("did-finish-load", () => {
+    splash?.close(); // Close the splash window
+    win?.show(); // Show the main window
     win?.webContents.send("main-process-message", new Date().toLocaleString());
   });
 
