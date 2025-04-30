@@ -22,12 +22,14 @@ process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL
   ? path.join(process.env.APP_ROOT, "public")
   : RENDERER_DIST;
 
+const MAIN_WINDOW_WIDTH = 1600;
+const MAIN_WINDOW_HEIGHT = 900;
+
 let win: BrowserWindow | null;
 let splash: BrowserWindow | null;
 let backendProcess: ChildProcessWithoutNullStreams | null = null;
 
 function createWindow() {
-  // Create the splash window first
   splash = new BrowserWindow({
     width: 500,
     height: 500,
@@ -45,9 +47,11 @@ function createWindow() {
 
   // Create browser window (initially hide it)
   win = new BrowserWindow({
-    width: 1600,
-    height: 900,
-    resizable: true,
+    width: MAIN_WINDOW_WIDTH,
+    height: MAIN_WINDOW_HEIGHT,
+    maxHeight: MAIN_WINDOW_HEIGHT,
+    maxWidth: MAIN_WINDOW_WIDTH,
+    resizable: false,
     frame: false,
     transparent: true,
     icon: path.join(process.env.VITE_PUBLIC, "holos-eu-logo.png"),
@@ -69,6 +73,9 @@ function createWindow() {
 
   // Initially hide the main window
   win.hide();
+
+  win.setFullScreen(true);
+  win.webContents.send("fullscreen-status", true);
 
   win.webContents.on("did-finish-load", () => {
     splash?.close(); // Close the splash window
@@ -140,4 +147,33 @@ ipcMain.on("open-external", (_event, url) => {
   shell.openExternal(url).catch((err) => {
     console.error("Failed to open URL:", err);
   });
+});
+
+ipcMain.on("close-main-window", () => {
+  app.quit();
+});
+
+ipcMain.on("minimize-main-window", () => {
+  if (win) {
+    win.minimize();
+  }
+});
+
+ipcMain.on("exit-fullscreen", () => {
+  if (win) {
+    win?.setFullScreen(false);
+
+    win?.setBounds({ width: MAIN_WINDOW_WIDTH, height: MAIN_WINDOW_HEIGHT });
+
+    win?.center();
+
+    win.webContents.send("fullscreen-status", false);
+  }
+});
+
+ipcMain.on("enter-fullscreen", () => {
+  if (win) {
+    win.setFullScreen(true);
+    win.webContents.send("fullscreen-status", true);
+  }
 });

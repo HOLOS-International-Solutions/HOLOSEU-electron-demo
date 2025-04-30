@@ -1,14 +1,14 @@
 import { ReactNode } from "react";
-import { NavBarHeight } from "./navbar";
+import { TopBarHeight } from "../shared/top-bar";
 
 export default function AppWrapper({ children }: { children: ReactNode }) {
   return (
     <div
       style={{
-        marginTop: `${NavBarHeight}px`,
-        maxHeight: `calc(100vh - ${NavBarHeight}px)`,
-        height: `calc(100vh - ${NavBarHeight}px)`,
-        minHeight: `calc(100vh - ${NavBarHeight}px)`,
+        marginTop: `${TopBarHeight}px`,
+        maxHeight: `calc(100vh - ${TopBarHeight}px)`,
+        height: `calc(100vh - ${TopBarHeight}px)`,
+        minHeight: `calc(100vh - ${TopBarHeight}px)`,
         overflowY: "auto",
         overflowX: "hidden",
       }}
