@@ -1,9 +1,16 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@font-face {
+  font-family: "Roboto";
+  src: url("./assets/font/roboto-variable-font.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  --font-roboto: "Roboto";
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -78,7 +85,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border outline-ring/50 font-roboto;
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--primary)) transparent;
     scroll-padding: 10;
@@ -95,6 +102,6 @@
   }
 
   .main-app {
-    @apply max-w-screen max-h-screen min-w-screen min-h-screen bg-background text-foreground rounded-lg overflow-hidden;
+    @apply max-w-screen max-h-screen min-w-screen min-h-screen bg-background text-foreground rounded-lg overflow-hidden border border-primary;
   }
 }

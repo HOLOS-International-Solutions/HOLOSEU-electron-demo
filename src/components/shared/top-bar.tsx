@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import WindowButtons from "./window-button";
 import MenuDropdown from "./menu-dropdown";
-import holosEuLogoWhiteBg from "../../assets/holos-eu-logo-white-bg.png";
+import TopLogo from "./top-logo";
 
 export const TopBarHeight = 40;
 
@@ -26,12 +26,9 @@ export default function TopBar() {
           } as React.CSSProperties),
         }}
       >
-        <div className="flex items-center gap-1 ml-1">
-          <img
-            src={holosEuLogoWhiteBg}
-            className="h-[70%] aspect-square rounded-lg"
-          ></img>
+        <div className="flex items-center gap-1">
           <MenuDropdown />
+          <TopLogo />
         </div>
         <WindowButtons
           isFullscreen={isFullscreen}
