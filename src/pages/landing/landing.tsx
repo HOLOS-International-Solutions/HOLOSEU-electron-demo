@@ -8,15 +8,18 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { useNavigate } from "react-router";
 
 export default function LandingPage() {
+  const navigate = useNavigate();
   return (
     <AppWrapper>
       <div className="flex justify-center items-center gap-2 h-full w-full p-4">
         <Card className="max-w-5xl w-full p-6">
           <div className="flex justify-between gap-2">
-            <h2 className="text-lg font-semibold">
-              Select your language / Sélectionnez votre langue <br></br>
+            <h2 className="font-semibold">
+              Select your language / Sélectionnez votre langue / Wählen Sie Ihre
+              Sprache <br></br>
               <span className="text-xs font-normal">
                 Version 1 (May 01 2025)
               </span>
@@ -26,8 +29,11 @@ export default function LandingPage() {
                 <SelectValue defaultValue={"en"} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="en">English/Anglais</SelectItem>
-                <SelectItem value="fr">French/Français</SelectItem>
+                <SelectItem value="en">English / Anglais/ Englisch</SelectItem>
+                <SelectItem value="fr">
+                  French / Français / Französisch
+                </SelectItem>
+                <SelectItem value="ge">German / Allemand / Deutsch</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -46,7 +52,7 @@ export default function LandingPage() {
           </div>
 
           <div className="mt-6">
-            <h2 className="text-lg font-semibold mb-2">Disclaimer</h2>
+            <h2 className="font-semibold mb-2">Disclaimer</h2>
             <div className="border border-foreground/20 p-3 max-h-[200px] overflow-y-scroll rounded">
               <p className="text-sm">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -90,7 +96,13 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <Button className="mx-auto -mt-2 w-[30%]">OK</Button>
+          <Button
+            className="mx-auto -mt-2 w-[30%] cursor-pointer"
+            onClick={() => navigate("/farm-options")}
+            variant={"primary"}
+          >
+            OK
+          </Button>
         </Card>
       </div>
     </AppWrapper>
