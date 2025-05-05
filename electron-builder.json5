@@ -1,9 +1,9 @@
 // @see - https://www.electron.build/configuration/configuration
 {
   $schema: "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
-  appId: "YourAppID",
+  appId: "com.holos.eu",
   asar: true,
-  productName: "Electron-Vite-React-FastAPI-Template",
+  productName: "HOLOS EU",
   directories: {
     output: "release/${version}",
   },
@@ -11,6 +11,7 @@
   extraResources: ["backend/dist/main"],
   mac: {
     target: ["dmg"],
+    icon: "resources/icons/mac/mac-icon.icns",
     artifactName: "${productName}-Mac-${version}-Installer.${ext}",
   },
   win: {
@@ -20,6 +21,7 @@
         arch: ["x64"],
       },
     ],
+    icon: "resources/icons/windows/win-icon.ico",
     artifactName: "${productName}-Windows-${version}-Setup.${ext}",
   },
   nsis: {
@@ -27,6 +29,7 @@
     perMachine: false,
     allowToChangeInstallationDirectory: true,
     deleteAppDataOnUninstall: false,
+    shortcutName: "HOLOS EU",
   },
   linux: {
     target: ["AppImage"],

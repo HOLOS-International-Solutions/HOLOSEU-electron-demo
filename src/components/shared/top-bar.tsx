@@ -18,7 +18,7 @@ export default function TopBar() {
   return (
     <>
       <nav
-        className="fixed top-0 left-0 z-[500] bg-primary w-screen flex justify-between rounded-t-lg"
+        className="fixed top-0 left-0 z-50 bg-primary w-screen flex justify-between rounded-t-lg"
         style={{
           height: `${TopBarHeight}px`,
           ...({

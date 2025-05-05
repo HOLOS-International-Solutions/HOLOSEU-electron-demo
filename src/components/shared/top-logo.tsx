@@ -5,7 +5,7 @@ export default function TopLogo() {
     <div className="flex items-center gap-1 h-full">
       <img
         src={holosEuLogoWhiteBg}
-        className="h-[55%] aspect-square rounded-xs"
+        className="h-[55%] aspect-square"
       ></img>
       <h1 className="text-xs text-white font-bold">HOLOS-EU</h1>
     </div>

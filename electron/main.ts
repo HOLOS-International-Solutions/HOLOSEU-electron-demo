@@ -28,6 +28,7 @@ const MAIN_WINDOW_HEIGHT = 900;
 let win: BrowserWindow | null;
 let splash: BrowserWindow | null;
 let backendProcess: ChildProcessWithoutNullStreams | null = null;
+const gotTheLock = app.requestSingleInstanceLock();
 
 function createWindow() {
   splash = new BrowserWindow({
@@ -140,7 +141,18 @@ app.on("activate", () => {
   }
 });
 
-app.whenReady().then(createWindow);
+if (!gotTheLock) {
+  app.quit();
+} else {
+  app.on("second-instance", () => {
+    if (win) {
+      if (win.isMinimized()) win.restore();
+      win.focus();
+    }
+  });
+
+  app.whenReady().then(createWindow);
+}
 
 // API FUNCTIONS
 ipcMain.on("open-external", (_event, url) => {

@@ -4,6 +4,7 @@ import {
   VscChromeMaximize,
   VscChromeMinimize,
 } from "react-icons/vsc";
+import LanguageToggle from "./language-toggle";
 
 export default function WindowButtons({
   isFullscreen,
@@ -16,11 +17,12 @@ export default function WindowButtons({
 }) {
   return (
     <div
-      className="flex flex-nowrap"
+      className="flex flex-nowrap items-center"
       style={{
         ...({ "-webkit-app-region": "no-drag" } as React.CSSProperties),
       }}
     >
+      <LanguageToggle />
       <button
         className="aspect-square h-full text-white hover:bg-white/10 flex justify-center items-center nav-no-drag duration-200"
         onClick={() => {
