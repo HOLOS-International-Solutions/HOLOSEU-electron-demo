@@ -1,4 +1,8 @@
 {
   "okButton": "OK",
-  "unknownError": "An unknown error occurred"
+  "unknownError": "An unknown error occurred",
+  "cancelButton": "Cancel",
+  "confirmCloseTitle": "Confirm close",
+  "confirmCloseText": "Are you sure you want to close the app?",
+  "confirmCloseButton": "Confirm app"
 }

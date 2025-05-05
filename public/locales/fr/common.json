@@ -1,4 +1,8 @@
 {
   "okButton": "D'accord",
-  "unknownError": "Une erreur inconnue s'est produite"
+  "unknownError": "Une erreur inconnue s'est produite",
+  "cancelButton": "Annuler",
+  "confirmCloseTitle": "Fermer l'application ?",
+  "confirmCloseText": "Etes-vous s r de vouloir fermer l'application ?",
+  "confirmCloseButton": "Fermer l'application"
 }
