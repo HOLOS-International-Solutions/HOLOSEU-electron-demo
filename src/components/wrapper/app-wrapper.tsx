@@ -5,7 +5,7 @@ export default function AppWrapper({ children }: { children: ReactNode }) {
   return (
     <div
       style={{
-        marginTop: `${TopBarHeight}px`,
+        marginTop: `${TopBarHeight - 1}px`,
         maxHeight: `calc(100vh - ${TopBarHeight}px)`,
         height: `calc(100vh - ${TopBarHeight}px)`,
         minHeight: `calc(100vh - ${TopBarHeight}px)`,

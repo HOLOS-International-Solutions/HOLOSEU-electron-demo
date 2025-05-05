@@ -8,46 +8,267 @@
       * {
         margin: 0;
         padding: 0;
-      }
-      body {
-        background-color: transparent;
+        box-sizing: border-box;
       }
 
-      .container {
+      body {
+        background-color: transparent;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
+
+      .splash-container {
+        position: relative;
         width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, #007c4b, #015a36);
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #3e7b27;
-        border-radius: 4px;
+        overflow: hidden;
       }
 
-      .loader {
-        border: 8px solid #e2e8f0;
-        border-top: 8px solid white;
+      .logo-container {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        margin-bottom: 30px;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .logo {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.2));
+      }
+
+      .title {
+        color: #ffffff;
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .subtitle {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1rem;
+        font-weight: 400;
+        margin-bottom: 40px;
+        letter-spacing: 1px;
+      }
+
+      .loading-bar {
+        width: 300px;
+        height: 6px;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .loading-progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        background-color: #ffffff;
+        border-radius: 10px;
+        animation: loading 3s ease-in-out infinite;
+      }
+
+      .loading-text {
+        margin-top: 15px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+      }
+
+      .particles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        display: block;
+        background-color: rgba(255, 255, 255, 0.2);
         border-radius: 50%;
+        animation: rise 15s linear infinite;
+      }
+
+      .particle:nth-child(1) {
+        width: 80px;
+        height: 80px;
+        bottom: -80px;
+        left: 10%;
+        animation-delay: 0s;
+        opacity: 0.2;
+      }
+
+      .particle:nth-child(2) {
+        width: 60px;
+        height: 60px;
+        bottom: -60px;
+        left: 30%;
+        animation-delay: 2s;
+        opacity: 0.15;
+      }
+
+      .particle:nth-child(3) {
+        width: 100px;
+        height: 100px;
+        bottom: -100px;
+        left: 50%;
+        animation-delay: 4s;
+        opacity: 0.1;
+      }
+
+      .particle:nth-child(4) {
         width: 50px;
         height: 50px;
-        animation: spin 1s linear infinite;
+        bottom: -50px;
+        left: 70%;
+        animation-delay: 6s;
+        opacity: 0.2;
       }
 
-      @keyframes spin {
+      .particle:nth-child(5) {
+        width: 70px;
+        height: 70px;
+        bottom: -70px;
+        left: 85%;
+        animation-delay: 8s;
+        opacity: 0.15;
+      }
+
+      @keyframes loading {
         0% {
-          transform: rotate(0deg);
+          width: 0%;
+        }
+        50% {
+          width: 70%;
+        }
+        80% {
+          width: 80%;
+        }
+        95% {
+          width: 95%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes rise {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0.2;
+        }
+        100% {
+          transform: translateY(-1000px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .splash-container {
+          width: 90%;
+          height: 500px;
         }
 
-        100% {
-          transform: rotate(360deg);
+        .logo-container {
+          width: 140px;
+          height: 140px;
+        }
+
+        .title {
+          font-size: 2.5rem;
+        }
+
+        .subtitle {
+          font-size: 1.2rem;
+        }
+
+        .loading-bar {
+          width: 250px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .splash-container {
+          height: 450px;
+        }
+
+        .logo-container {
+          width: 120px;
+          height: 120px;
+        }
+
+        .title {
+          font-size: 2rem;
+        }
+
+        .subtitle {
+          font-size: 1rem;
+        }
+
+        .loading-bar {
+          width: 200px;
         }
       }
     </style>
   </head>
-
   <body>
-    <div class="container">
-      <div class="loader"></div>
+    <div class="splash-container">
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+
+      <div class="logo-container">
+        <img src="holos-eu-logo.png" alt="HOLOS EU Logo" class="logo" />
+      </div>
+
+      <h1 class="title">HOLOS EU</h1>
+      <h2 class="subtitle">Initializing System</h2>
+
+      <div class="loading-bar">
+        <div class="loading-progress"></div>
+      </div>
+
+      <div class="loading-text">
+        Please wait while we prepare your experience...
+      </div>
     </div>
   </body>
 </html>
